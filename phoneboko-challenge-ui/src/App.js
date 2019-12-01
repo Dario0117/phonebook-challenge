@@ -29,18 +29,19 @@ class App extends React.Component {
   handleSearch = (e) => {
     e.preventDefault()
     fetch(`http://localhost:8080/contact/search?q=${this.state.searchTerm}`)
-    .then(res => res.json())
-    .then(contacts => {
-      this.setState({
-        searchResult: contacts
+      .then(res => res.json())
+      .then(contacts => {
+        this.setState({
+          searchResult: contacts,
+          searchTerm: ''
+        })
       })
-    })
   }
 
   handleAdd = (e) => {
     e.preventDefault()
     fetch("http://localhost:8080/contact", {
-      method: 'POST',headers: {
+      method: 'POST', headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -49,13 +50,16 @@ class App extends React.Component {
         phone: this.state.phone,
       })
     })
-    .then(res => res.json())
-    .then(contacts => {
-      this.setState({
-        searchResult: contacts
+      .then(res => res.json())
+      .then(contacts => {
+        this.setState({
+          firstName: '',
+          lastName: '',
+          phone: '',
+          searchResult: contacts
+        })
+        this.loadContacts()
       })
-      this.loadContacts()
-    })
   }
 
   handleSearchInput = (e) => {
@@ -117,56 +121,59 @@ class App extends React.Component {
               <h2><i className="fa fa-search"></i>Search contact</h2>
               <form className="pure-form">
                 <fieldset className="pure-group">
-                  <input type="text" className="pure-input-1-2" value={this.state.searchTerm} onChange={this.handleSearchInput} />
+                  <input type="text" className="pure-input-1-2" value={this.state.searchTerm} onChange={this.handleSearchInput} required />
                 </fieldset>
                 <button onClick={this.handleSearch} type="submit" className="pure-button pure-input-1-2 pure-button-primary">
                   <i className="fa fa-search"></i>Search</button>
               </form>
-              {this.state.searchResult.length > 0 && (
-                <table className="pure-table">
-                <thead>
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone</th>
-                  </tr>
-                </thead>
+              <div class="table-wrapper-scroll-y my-custom-scrollbar2">
+                {this.state.searchResult.length > 0 && (
+                  <table className="pure-table">
+                    <thead>
+                      <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone</th>
+                      </tr>
+                    </thead>
 
-                <tbody>
-                  {this.state.searchResult.map(contact => (
-                    <tr key={contact.id}>
-                      <td>{contact.firstName}</td>
-                      <td>{contact.lastName}</td>
-                      <td>{contact.phone}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              )}
+                    <tbody>
+                      {this.state.searchResult.map(contact => (
+                        <tr key={contact.id}>
+                          <td>{contact.firstName}</td>
+                          <td>{contact.lastName}</td>
+                          <td>{contact.phone}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
             </div>
           </div>
           <div className="pure-u-sm-1 pure-u-1-3">
             <div className="box">
               <h2><i className="fa fa-users"></i> Contacts</h2>
-              <table className="pure-table">
-                <thead>
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {this.state.contacts.map(contact => (
-                    <tr key={contact.id}>
-                      <td>{contact.firstName}</td>
-                      <td>{contact.lastName}</td>
-                      <td>{contact.phone}</td>
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table className="pure-table">
+                  <thead>
+                    <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Phone</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {this.state.contacts.map(contact => (
+                      <tr key={contact.id}>
+                        <td>{contact.firstName}</td>
+                        <td>{contact.lastName}</td>
+                        <td>{contact.phone}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
