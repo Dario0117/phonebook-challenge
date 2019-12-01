@@ -1,5 +1,26 @@
+
+# Created by https://www.gitignore.io/api/react,gradle
+# Edit at https://www.gitignore.io/?templates=react,gradle
+
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_componets
+
+*.sublime*
+
+psd
+thumb
+sketch
+
+### Gradle ###
 .gradle
-/build/
+build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -12,3 +33,10 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+
+# End of https://www.gitignore.io/api/react,gradle
+
+*.class
