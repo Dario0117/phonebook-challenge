@@ -2,6 +2,8 @@ import React from 'react';
 import phonebook from './phonebook.png';
 import './App.css';
 
+const HOST = "http://localhost:8080"
+
 class App extends React.Component {
   state = {
     contacts: [],
@@ -13,7 +15,7 @@ class App extends React.Component {
   }
 
   loadContacts = () => {
-    fetch("http://localhost:8080/contact")
+    fetch(`${HOST}/contact`)
       .then(res => res.json())
       .then(contacts => {
         this.setState({
@@ -28,7 +30,7 @@ class App extends React.Component {
 
   handleSearch = (e) => {
     e.preventDefault()
-    fetch(`http://localhost:8080/contact/search?q=${this.state.searchTerm}`)
+    fetch(`${HOST}/contact/search?q=${this.state.searchTerm}`)
       .then(res => res.json())
       .then(contacts => {
         this.setState({
@@ -40,7 +42,7 @@ class App extends React.Component {
 
   handleAdd = (e) => {
     e.preventDefault()
-    fetch("http://localhost:8080/contact", {
+    fetch(`${HOST}/contact`, {
       method: 'POST', headers: {
         'Content-Type': 'application/json'
       },
