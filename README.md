@@ -23,7 +23,9 @@ This project was built with:
   - `MYSQL_HOST`
   - `MYSQL_USER`
   - `MYSQL_PW`
+  
   **Note:** in the `application.property` file the MySQL port is `3307` (MySQL default port is `3306`).
+  
 3. In your MySQL database you need to create a schema called `phonebook`, customizable in the `application.property`
 4. Start the backend with `gradle bootRun`, it start on port 8080
 5. Check if the HOST is correctly configured in `App.js` on the front end directory
