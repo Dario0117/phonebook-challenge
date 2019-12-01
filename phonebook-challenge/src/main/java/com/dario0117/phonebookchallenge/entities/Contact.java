@@ -16,80 +16,88 @@ import javax.validation.constraints.Size;
 @Table(name = "contacts")
 public class Contact implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "name")
-    private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "phone")
-    private String phone;
-    
-    public Contact() {
-    }
+  private static final long serialVersionUID = 1L;
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 100)
+  @Column(name = "firstName")
+  private String firstName;
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 100)
+  @Column(name = "lastName")
+  private String lastName;
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 100)
+  @Column(name = "phone")
+  private String phone;
 
-    public Contact(Integer id) {
-      this.id = id;
-    }
+  public Contact() {
+  }
 
-    public Contact(Integer id, String name, String phone) {
-      this.id = id;
-      this.name = name;
-      this.phone = phone;
-    }
+  public Contact(Integer id) {
+    this.id = id;
+  }
 
-    public Contact(String name, String phone) {
-      this.name = name;
-      this.phone = phone;
-    }
+  public Contact(String firstName, String lastName, String phone) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.phone = phone;
+  }
 
-    public Integer getId() {
-      return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setFirstName(String name) {
+    this.firstName = name;
+  }
 
-    public String getName() {
-      return name;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setPhone(String phone) {
-      this.phone = phone;
-    }
+  public void setLastName(String name) {
+    this.lastName = name;
+  }
 
-    public String getPhone() {
-      return phone;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Contact)) {
-            return false;
-        }
-        Contact other = (Contact) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+  public String getPhone() {
+    return phone;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 0;
+    hash += (id != null ? id.hashCode() : 0);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object object) {
+    if (!(object instanceof Contact)) {
+      return false;
     }
+    Contact other = (Contact) object;
+    if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+      return false;
+    }
+    return true;
+  }
 }

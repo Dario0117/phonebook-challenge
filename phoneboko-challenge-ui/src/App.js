@@ -28,14 +28,7 @@ class App extends React.Component {
 
   handleSearch = (e) => {
     e.preventDefault()
-    fetch("http://localhost:8080/contact/search", {
-      method: 'POST',headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: this.state.searchTerm
-      })
-    })
+    fetch(`http://localhost:8080/contact/search?q=${this.state.searchTerm}`)
     .then(res => res.json())
     .then(contacts => {
       this.setState({
@@ -51,7 +44,8 @@ class App extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: this.state.firstName,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
         phone: this.state.phone,
       })
     })
@@ -110,7 +104,7 @@ class App extends React.Component {
               <form className="pure-form">
                 <fieldset className="pure-group">
                   <input type="text" className="pure-input-1-2" placeholder="First Name" value={this.state.firstName} onChange={this.handleFirstName} required />
-                  <input type="text" className="pure-input-1-2" placeholder="Last Name" value={this.state.lastName} onChange={this.handleLastName} />
+                  <input type="text" className="pure-input-1-2" placeholder="Last Name" value={this.state.lastName} onChange={this.handleLastName} required />
                   <input type="text" className="pure-input-1-2" placeholder="Phone" value={this.state.phone} onChange={this.handlePhone} required />
                 </fieldset>
                 <button onClick={this.handleAdd} type="submit" className="pure-button pure-input-1-2 pure-button-primary">
@@ -141,8 +135,8 @@ class App extends React.Component {
                 <tbody>
                   {this.state.searchResult.map(contact => (
                     <tr key={contact.id}>
-                      <td>{contact.name}</td>
-                      <td>Kart</td>
+                      <td>{contact.firstName}</td>
+                      <td>{contact.lastName}</td>
                       <td>{contact.phone}</td>
                     </tr>
                   ))}
@@ -166,8 +160,8 @@ class App extends React.Component {
                 <tbody>
                   {this.state.contacts.map(contact => (
                     <tr key={contact.id}>
-                      <td>{contact.name}</td>
-                      <td>Kart</td>
+                      <td>{contact.firstName}</td>
+                      <td>{contact.lastName}</td>
                       <td>{contact.phone}</td>
                     </tr>
                   ))}

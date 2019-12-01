@@ -15,7 +15,7 @@ public class ContactService {
     private ContactRepository repo;
 
     public Contact create(ContactRequest body) {
-      Contact p = new Contact(body.getName(), body.getPhone());
+      Contact p = new Contact(body.getFirstName(), body.getLastName(), body.getPhone());
       Contact created = repo.save(p);
       return created;
     }
@@ -24,11 +24,7 @@ public class ContactService {
       return repo.findAll();
     }
 
-    public List<Contact> search(ContactRequest body) {
-      if (body.getName() != null) {
-        return repo.findByNameContaining(body.getName());
-      } else {
-        return repo.findByPhoneContaining(body.getPhone());
-      }
+    public List<Contact> search(String searchTerm) {
+      return repo.search(searchTerm);
     }
 }

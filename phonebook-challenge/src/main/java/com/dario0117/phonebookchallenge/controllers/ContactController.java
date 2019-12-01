@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
@@ -42,12 +43,12 @@ public class ContactController {
       }
     }
 
-    @PostMapping(
+    @GetMapping(
         value = "/search"
     )
-    public ResponseEntity<Object> search(@RequestBody ContactRequest body) {
+    public ResponseEntity<Object> search(@RequestParam(name = "q", defaultValue = "") String searchTerm) {
         return ResponseEntity
             .ok()
-            .body(service.search(body));
+            .body(service.search(searchTerm));
     }
 }

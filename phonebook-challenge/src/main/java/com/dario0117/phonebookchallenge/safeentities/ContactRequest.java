@@ -12,23 +12,32 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContactRequest implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private String name;
-    private String phone;
+  private static final long serialVersionUID = 1L;
+  private String firstName;
+  private String lastName;
+  private String phone;
 
-    public void setName(String name) {
-      this.name = name;
-    }
+  public void setFirstName(String name) {
+    this.firstName = name;
+  }
 
-    public String getName() {
-      return name;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setPhone(String phone) {
-      this.phone = phone;
-    }
+  public void setLastName(String name) {
+    this.lastName = name;
+  }
 
-    public String getPhone() {
-      return phone;
-    }
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
 }
